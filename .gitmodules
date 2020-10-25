@@ -1,0 +1,9 @@
+[submodule "igem_frontend"]
+	path = igem_frontend
+	url = https://github.com/Imperial-iGEM/igem_frontend.git
+[submodule "DJANGO-Assembly-Methods"]
+	path = DJANGO-Assembly-Methods
+	url = https://github.com/Imperial-iGEM/DJANGO-Assembly-Methods.git
+[submodule "Intro-to-Modelling-Code"]
+	path = Intro-to-Modelling-Code
+	url = https://github.com/Imperial-iGEM/Intro-to-Modelling-Code.git
