@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="stylesheet" href="https://sboldesigner.soaplab.io/sbol-designer/css/style.css"/>
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>Imperial iGEM 2020</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+
+    <script>
+      var sbolFile = "";
+      var testReturn = "";
+
+      function outOfSBOLDesigner(newSBOl){
+        testReturn = atob(newSBOl);
+        console.log(newSBOl);
+        console.log(testReturn);
+      }
+      var webswingInstance0 = {
+        options: {
+          autoStart: true,
+          args: 'foo',
+          recording: getParam('recording'),
+          binarySocket: getParam('binarySocket'),
+          debugPort: getParam('debugPort'),
+          recordingPlayback: getParam('recordingPlayback'),
+          connectionUrl:'https://sboldesigner.soaplab.io/sbol-designer',
+        }
+      }
+
+      async function runSend() {
+        try {
+          pingService.send(test()).then(
+                  function (result) {
+                  }
+          ).catch(
+                  function (error) {
+                    console.log(error);
+                  }
+          )
+        } catch (e) {
+          console.log(e);
+        }
+        return 1;
+      }
+
+      async function runGet() {
+        var resultSbol = window.sbolFile
+        var error = false;
+        try {
+          pingService.get().then(
+            (result) => {
+              resultSbol = result
+            }
+          ).catch(
+            (error) => {
+              console.log(error);
+              error = true;
+            }
+          );
+        } catch (e) {
+          error = true;
+          console.log(e);
+        }
+        return {error: true, sbol: resultSbol};
+      }
+
+
+      function getParam(name) {
+        name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+        var results = new RegExp("[\\?&]" + name + "=([^&#]*)").exec(location.href);
+        return results == null ? null : decodeURIComponent(results[1]);
+      }
+    </script>
+    <script data-webswing-global-var="webswing">
+      function webFunction(window, document) {
+        console.log('function ran');
+        var loader = function () {
+          console.log('function ran 2');
+          var baseUrl = 'https://sboldesigner.soaplab.io/sbol-designer';
+          baseUrl = baseUrl.indexOf("/", baseUrl.length - 1) !== -1 ? baseUrl : (baseUrl + "/");
+          var xmlhttp = new XMLHttpRequest();
+          xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+              var version = xmlhttp.status == 200 ? xmlhttp.responseText : "undefined";
+              var script = document.createElement("script"),
+              tag = document.getElementsByTagName("script")[0];
+              script.src = baseUrl + "javascript/webswing-embed.js?version="+ version;tag.parentNode.insertBefore(script, tag);
+            }
+          };
+          xmlhttp.open("GET", baseUrl + "rest/version", true);
+          xmlhttp.send();
+        };
+        window.addEventListener ? window.addEventListener("initialiseDesigner", loader, false) : window.attachEvent("initialiseDesigner", loader);
+      }
+    </script>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+
+
+  </body>
+</html>
