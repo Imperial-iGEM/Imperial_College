@@ -7,3 +7,6 @@
 [submodule "Intro-to-Modelling-Code"]
 	path = Intro-to-Modelling-Code
 	url = https://github.com/Imperial-iGEM/Intro-to-Modelling-Code.git
+[submodule "SBOLDesigner"]
+	path = SBOLDesigner
+	url = https://github.com/Imperial-iGEM/SBOLDesigner.git
