@@ -1,7 +1,7 @@
 
 # SOAP Lab
 
-![img](../static/soaplab.png)
+![img](./static/soaplab.png)
 
 Welcome to SOAP Lab, the official project repository for the 2020 Imperial iGEM team!
 
